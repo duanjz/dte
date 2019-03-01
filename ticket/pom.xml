@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.imooc.example</groupId>
-	<artifactId>order</artifactId>
+	<artifactId>ticket</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>order</name>
+	<name>ticket</name>
 	<description>Demo project for Spring Boot</description>
 
 	<parent>
