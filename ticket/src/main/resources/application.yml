@@ -1,0 +1,20 @@
+server:
+  port: 8083
+spring:
+  application:
+    name: ticket
+  datasource:
+    url: jdbc:mysql://123.59.197.127:33061/immoc_ticket?characterEncoding=UTF-8
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.jdbc.Driver
+  jpa:
+    database: MYSQL
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://imooc:111111@localhost:8761/eureka/
