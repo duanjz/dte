@@ -1,4 +1,4 @@
-package com.imooc.example.order.web;
+package com.imooc.example.ticket.web;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
