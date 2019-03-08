@@ -1,9 +1,9 @@
-package com.imooc.example.order.web;
+package com.imooc.example.user.web;
 
 import com.imooc.example.dto.OrderDTO;
-import com.imooc.example.order.dao.CustomerRepository;
-import com.imooc.example.order.domain.Customer;
-import com.imooc.example.order.feign.OrderClient;
+import com.imooc.example.user.dao.CustomerRepository;
+import com.imooc.example.user.domain.Customer;
+import com.imooc.example.user.feign.OrderClient;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

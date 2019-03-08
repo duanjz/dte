@@ -1,13 +1,10 @@
-package com.imooc.example.order.domain;
+package com.imooc.example.user.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-/**
- * Created by mavlarn on 2018/1/20.
- */
 @Entity(name = "customer")
 public class Customer {
 
@@ -21,6 +18,8 @@ public class Customer {
     private String password;
 
     private String role;
+    
+    private int deposit;//余额
 
     public Long getId() {
         return id;
@@ -53,4 +52,12 @@ public class Customer {
     public void setRole(String role) {
         this.role = role;
     }
+
+	public int getDeposit() {
+		return deposit;
+	}
+
+	public void setDeposit(int deposit) {
+		this.deposit = deposit;
+	}
 }
