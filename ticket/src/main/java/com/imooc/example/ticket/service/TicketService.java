@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.imooc.example.dto.OrderDTO;
 import com.imooc.example.ticket.dao.TicketRepository;
-import com.imooc.example.ticket.domain.Ticket;
 
 @Service
 public class TicketService {
@@ -23,12 +22,11 @@ public class TicketService {
 	@Transactional
 	@JmsListener(destination="order:new",containerFactory="msgFactory")
 	public void handleTicketLock(OrderDTO dto){
-		System.out.println("1111111111111111111");
 		int count = ticketRepository.lockTicket(dto.getCustomerId(), dto.getTicketNum());
 		LOG.info("Get new order for ticket lock:{}",dto);
-		if(count == 1){
+		if(count == 1){//锁票成功
 			dto.setStatus("TICKET_LOCKED");
-			jmsTemplate.convertAndSend("order:lock",dto);
+			jmsTemplate.convertAndSend("order:locked",dto);//触发订单创建
 		}else{
 			
 		}
@@ -64,6 +62,20 @@ public class TicketService {
 		}
 		
 		return lockCount;
+	}
+	
+	@Transactional
+	@JmsListener(destination="order:ticket_move",containerFactory="msgFactory")
+	public void handleTicketMove(OrderDTO dto){
+		LOG.info("GET new order to ticket move{}",dto);
+		int count = ticketRepository.moveTicket(dto.getCustomerId(), dto.getTicketNum());
+		if(count == 0){
+			LOG.warn("ticket has been moved {}",dto);
+		}
+		
+		dto.setStatus("TICKET_MOVED");
+		jmsTemplate.convertAndSend("order:finish",dto);//触发订单创建
+		
 	}
 	
 }

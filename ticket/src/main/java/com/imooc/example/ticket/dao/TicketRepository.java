@@ -6,7 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.imooc.example.ticket.domain.Ticket;
 
@@ -15,7 +14,7 @@ public interface TicketRepository extends JpaRepository<Ticket, Long> {
 
     List<Ticket> findOneByOwner(Long owner);
     
-    Ticket findOneByTicketNum(Long ticketNum);
+    Ticket findOneByTicketNumAndLockUser(Long ticketNum,Long lockUser);
     
     /**
      * 幂等操作
@@ -23,8 +22,13 @@ public interface TicketRepository extends JpaRepository<Ticket, Long> {
      * @param ticketNum
      * @return
      */
-    @Modifying@Transactional
+    @Modifying
     @Query("UPDATE ticket SET lockUser = ?1 WHERE lockUser is NULL and ticketNum = ?2")
-//    @Transactional
     public int lockTicket(Long customerId,Long ticketNum);
+    
+    @Modifying
+    @Query("UPDATE ticket SET owner = ?1, lockUser = NULL WHERE lockUser = ?1 and ticketNum = ?2")
+    public int moveTicket(Long customerId,Long ticketNum);
+    
+    
 }
