@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.uuid.Generators;
+import com.fasterxml.uuid.impl.TimeBasedGenerator;
 import com.imooc.example.IOrderService;
 import com.imooc.example.dto.OrderDTO;
 import com.imooc.example.order.dao.OrderRepository;
@@ -24,9 +26,12 @@ public class OrderResource implements IOrderService {
     private OrderRepository orderRepository;
     @Autowired
     private JmsTemplate jmsTemplate;
+    
+    private TimeBasedGenerator uuidGenerator = Generators.timeBasedGenerator();
 
     @PostMapping("/create")
-    public void create(@RequestBody OrderDTO dto) {
+    public void create(@RequestBody OrderDTO dto) {//发起订单
+    	dto.setUuid(uuidGenerator.generate().toString());
     	jmsTemplate.convertAndSend("order:new",dto);
     }
 
@@ -44,5 +49,7 @@ public class OrderResource implements IOrderService {
     public List<Order> getAll() {
         return orderRepository.findAll();
     }
+    
+    
 
 }

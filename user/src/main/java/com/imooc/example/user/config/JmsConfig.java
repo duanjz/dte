@@ -1,4 +1,4 @@
-package com.imooc.example.order.config;
+package com.imooc.example.user.config;
 
 import javax.jms.ConnectionFactory;
 

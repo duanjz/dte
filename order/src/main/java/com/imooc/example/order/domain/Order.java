@@ -1,5 +1,7 @@
 package com.imooc.example.order.domain;
 
+import java.time.ZonedDateTime;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -24,6 +26,8 @@ public class Order {
     private String status;//订单状态
     
     private String reason;//出错原因
+    
+    private ZonedDateTime createTime;//创建时间
 
     public Long getId() {
         return id;
@@ -87,5 +91,13 @@ public class Order {
 
 	public void setReason(String reason) {
 		this.reason = reason;
+	}
+
+	public ZonedDateTime getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(ZonedDateTime createTime) {
+		this.createTime = createTime;
 	}
 }

@@ -1,4 +1,4 @@
-package com.imooc.example.order;
+package com.imooc.example.user;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

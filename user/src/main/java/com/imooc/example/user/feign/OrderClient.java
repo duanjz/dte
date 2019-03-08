@@ -1,4 +1,4 @@
-package com.imooc.example.order.feign;
+package com.imooc.example.user.feign;
 
 import com.imooc.example.IOrderService;
 import com.imooc.example.dto.OrderDTO;

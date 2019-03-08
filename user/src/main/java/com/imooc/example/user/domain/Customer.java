@@ -1,4 +1,4 @@
-package com.imooc.example.order.domain;
+package com.imooc.example.user.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
