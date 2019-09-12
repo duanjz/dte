@@ -19,7 +19,7 @@ public class Order {
 
     private String title;
 
-    private Long ticketNum;
+    private Long ticketNum;//订单买的哪张票
 
     private int amount;
     
